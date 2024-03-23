@@ -11,5 +11,5 @@ to install all the libraries used in this project
 ```shell
 npx parcel index.html
 ```
-for bundling the packages
+for building the webapp on localhost
 

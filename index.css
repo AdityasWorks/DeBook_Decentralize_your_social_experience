@@ -1,0 +1,215 @@
+.desktop-3-child {
+  width: 1022px;
+  height: 1022px;
+  rotate: 90;
+  position: absolute;
+  margin: 0 !important;
+  right: -460px;
+  bottom: -358px;
+  mix-blend-mode: normal;
+
+}
+.desktop-3-item {
+  width: 717px;
+  height: 717px;
+  bottom: 153px;
+  left: -393px;
+  mix-blend-mode: normal;
+  rotate: 45;
+}
+.desktop-3-item,
+.frame-child,
+.frame-item {
+  position: absolute;
+  margin: 0 !important;
+}
+.frame-child {
+  width: 717px;
+  height: 717px;
+  top: -599.8px;
+  right: -261px;
+  mix-blend-mode: normal;
+}
+.frame-item {
+  width: calc(100% - 27px);
+  height: 100%;
+  top: 0;
+  right: 27px;
+  bottom: 0;
+  left: 0;
+  border-radius: 59px;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+.welcome-to {
+  margin: 0;
+  height: 54px;
+  position: relative;
+  font-size: inherit;
+  font-weight: 600;
+  font-family: inherit;
+  display: flex;
+  align-items: flex-end;
+  z-index: 2;
+}
+.welcome-to-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 76px;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.debook {
+  margin: 0;
+  height: 149px;
+  position: relative;
+  font-size: inherit;
+  font-weight: 600;
+  font-family: inherit;
+  display: flex;
+  align-items: flex-end;
+  z-index: 2;
+}
+.debook-wrapper {
+  height: 135px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 99px;
+}
+.lorem-ipsum-dolor {
+  width: 662px;
+  height: 126px;
+  position: absolute;
+  margin: 0 !important;
+  bottom: 165.7px;
+  left: calc(50% - 344.5px);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 2;
+}
+.desktop-3,
+.vector-parent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.vector-parent {
+  padding: 119.2px 234px 336.7px;
+  max-width: 100%;
+}
+.desktop-3 {
+  width: 100%;
+  height: 1024px;
+  background-color: #090041;
+  overflow: hidden;
+  padding: 200.8px 90px 178.3px;
+  letter-spacing: normal;
+  text-align: left;
+  font-size: 36px;
+  color: var(--color-white);
+  font-family: var(--font-poppins);
+}
+@media screen and (max-width: 1050px) {
+  .desktop-3 {
+    padding-left: var(--padding-26xl);
+    padding-right: var(--padding-26xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .welcome-to {
+    font-size: 29px;
+  }
+  .debook {
+    font-size: 49px;
+  }
+  .vector-parent {
+    padding-left: var(--padding-98xl);
+    padding-right: var(--padding-98xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 725px) {
+  .vector-parent {
+    padding-top: 77px;
+    padding-bottom: 219px;
+    box-sizing: border-box;
+  }
+  .desktop-3 {
+    padding-left: var(--padding-3xl);
+    padding-right: var(--padding-3xl);
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .welcome-to {
+    font-size: 22px;
+  }
+  .welcome-to-wrapper {
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+    box-sizing: border-box;
+  }
+  .debook {
+    font-size: 30px;
+  }
+  .vector-parent {
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+    box-sizing: border-box;
+  }
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Set a high z-index to ensure the navbar is above other elements */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: transparent; /* Set background color to transparent or match website background */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  font-family: inherit;
+}
+
+
+
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  font-family: inherit;
+}
+
+.brand-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #FFFFFF;
+  font-family: inherit;
+}
+

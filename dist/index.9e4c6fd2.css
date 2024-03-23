@@ -1,0 +1,227 @@
+.desktop-3-child {
+  rotate: 90;
+  mix-blend-mode: normal;
+  width: 1022px;
+  height: 1022px;
+  position: absolute;
+  bottom: -358px;
+  right: -460px;
+  margin: 0 !important;
+}
+
+.desktop-3-item {
+  mix-blend-mode: normal;
+  rotate: 45;
+  width: 717px;
+  height: 717px;
+  bottom: 153px;
+  left: -393px;
+}
+
+.desktop-3-item, .frame-child, .frame-item {
+  position: absolute;
+  margin: 0 !important;
+}
+
+.frame-child {
+  mix-blend-mode: normal;
+  width: 717px;
+  height: 717px;
+  top: -599.8px;
+  right: -261px;
+}
+
+.frame-item {
+  object-fit: contain;
+  z-index: 1;
+  border-radius: 59px;
+  width: calc(100% - 27px);
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  inset: 0 27px 0 0;
+  overflow: hidden;
+}
+
+.welcome-to {
+  font-size: inherit;
+  z-index: 2;
+  align-items: flex-end;
+  height: 54px;
+  margin: 0;
+  font-family: inherit;
+  font-weight: 600;
+  display: flex;
+  position: relative;
+}
+
+.welcome-to-wrapper {
+  box-sizing: border-box;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-width: 100%;
+  padding: 0 76px;
+  display: flex;
+}
+
+.debook {
+  font-size: inherit;
+  z-index: 2;
+  align-items: flex-end;
+  height: 149px;
+  margin: 0;
+  font-family: inherit;
+  font-weight: 600;
+  display: flex;
+  position: relative;
+}
+
+.debook-wrapper {
+  box-sizing: border-box;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 135px;
+  padding: 0;
+  font-size: 99px;
+  display: flex;
+}
+
+.lorem-ipsum-dolor {
+  text-align: center;
+  z-index: 2;
+  justify-content: center;
+  align-items: flex-end;
+  width: 662px;
+  height: 126px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  position: absolute;
+  bottom: 165.7px;
+  left: calc(50% - 344.5px);
+  margin: 0 !important;
+}
+
+.desktop-3, .vector-parent {
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  position: relative;
+}
+
+.vector-parent {
+  max-width: 100%;
+  padding: 119.2px 234px 336.7px;
+}
+
+.desktop-3 {
+  letter-spacing: normal;
+  text-align: left;
+  color: var(--color-white);
+  font-size: 36px;
+  font-family: var(--font-poppins);
+  background-color: #090041;
+  width: 100%;
+  height: 1024px;
+  padding: 200.8px 90px 178.3px;
+  overflow: hidden;
+}
+
+@media screen and (width <= 1050px) {
+  .desktop-3 {
+    padding-left: var(--padding-26xl);
+    padding-right: var(--padding-26xl);
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (width <= 1000px) {
+  .welcome-to {
+    font-size: 29px;
+  }
+
+  .debook {
+    font-size: 49px;
+  }
+
+  .vector-parent {
+    padding-left: var(--padding-98xl);
+    padding-right: var(--padding-98xl);
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (width <= 725px) {
+  .vector-parent {
+    box-sizing: border-box;
+    padding-top: 77px;
+    padding-bottom: 219px;
+  }
+
+  .desktop-3 {
+    padding-left: var(--padding-3xl);
+    padding-right: var(--padding-3xl);
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (width <= 450px) {
+  .welcome-to {
+    font-size: 22px;
+  }
+
+  .welcome-to-wrapper {
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+    box-sizing: border-box;
+  }
+
+  .debook {
+    font-size: 30px;
+  }
+
+  .vector-parent {
+    padding-left: var(--padding-xl);
+    padding-right: var(--padding-xl);
+    box-sizing: border-box;
+  }
+}
+
+.navbar {
+  z-index: 1000;
+  background-color: #0000;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+  font-family: inherit;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.navbar-logo {
+  align-items: center;
+  font-family: inherit;
+  display: flex;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  font-family: inherit;
+}
+
+.brand-name {
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+/*# sourceMappingURL=index.9e4c6fd2.css.map */

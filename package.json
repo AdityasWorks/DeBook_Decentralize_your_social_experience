@@ -1,0 +1,24 @@
+{
+  "name": "blockchain-lab3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "hardhat": "^2.22.1",
+    "web3": "^4.4.0",
+    "web3-eth-contract": "^4.2.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "events": "^3.3.0",
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  },
+  "description": ""
+}

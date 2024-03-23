@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* fonts */
+  --font-poppins: Poppins;
+
+  /* Colors */
+  --color-white: #fff;
+
+  /* Paddings */
+  --padding-3xl: 22px;
+  --padding-26xl: 45px;
+  --padding-xl: 20px;
+  --padding-98xl: 117px;
+}

@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  --font-poppins: Poppins;
+  --color-white: #fff;
+  --padding-3xl: 22px;
+  --padding-26xl: 45px;
+  --padding-xl: 20px;
+  --padding-98xl: 117px;
+}
+/*# sourceMappingURL=index.689f5f05.css.map */

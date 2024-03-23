@@ -12,7 +12,7 @@ window.addEventListener("load",async()=>{
         }
         accounts=await web3.eth.getAccounts();
         console.log("Accounts:", accounts);
-        alert("Signed in with: "+accounts[0]);
+        alert("Signed into DeBook with: "+accounts[0]);
     }else{
         alert("Metamask Not Installed");
     }

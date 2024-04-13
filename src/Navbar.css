@@ -1,0 +1,35 @@
+.kkl{
+  margin-left: -1;
+}
+
+.navbar {
+  background-color: transparent !important;
+  width: 100%;
+}
+
+.brand-container {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  font-family: poppins;
+  font-weight: bold;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin-right: 0.6rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-link {
+  color: #fff !important;
+}

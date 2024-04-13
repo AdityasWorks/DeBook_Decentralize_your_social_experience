@@ -1,105 +1,78 @@
-import {
-  Link,
-  BrowserRouter,
-  Routes,
-  Route
-} from "react-router-dom";
-import { useState, useEffect } from 'react'
-import { ethers } from "ethers"
-import DebookAbi from './contractsData/Debook.json'
-import DebookAddress from './contractsData/Debook-address.json'
-import { Spinner, Navbar, Nav, Button, Container } from 'react-bootstrap'
-import logo from './logo.png'
-import Home from './Home.js'
-import Profile from './Profile.js'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { ethers } from 'ethers';
+import DebookAbi from './contractsData/Debook.json';
+import DebookAddress from './contractsData/Debook-address.json';
+import { Spinner } from 'react-bootstrap';
+import Navbar from './Navbar';
+import Home from './Home.js';
+import Profile from './Profile.js';
+import BrandInfo from './BrandInfo.js';
 import './App.css';
 
 function App() {
-  const [loading, setLoading] = useState(true)
-  const [account, setAccount] = useState(null)
-  const [contract, setContract] = useState({})
+  const [loading, setLoading] = useState(true);
+  const [account, setAccount] = useState(null);
+  const [contract, setContract] = useState({});
 
   const web3Handler = async () => {
     let accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-    setAccount(accounts[0])
+    setAccount(accounts[0]);
 
     // Setup event listeners for metamask
     window.ethereum.on('chainChanged', () => {
       window.location.reload();
-    })
+    });
     window.ethereum.on('accountsChanged', async () => {
-      setLoading(true)
-      web3Handler()
-    })
-    // Get provider from Metamask
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    // Get signer
-    const signer = provider.getSigner()
-    loadContract(signer)
-  }
-  const loadContract = async (signer) => {
+      setLoading(true);
+      web3Handler();
+    });
 
+    // Get provider from Metamask
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    // Get signer
+    const signer = provider.getSigner();
+    loadContract(signer);
+  };
+
+  const loadContract = async (signer) => {
     // Get deployed copy of Debook contract
-    const contract = new ethers.Contract(DebookAddress.address, DebookAbi.abi, signer)
-    setContract(contract)
-    setLoading(false)
-  }
+    const contract = new ethers.Contract(DebookAddress.address, DebookAbi.abi, signer);
+    setContract(contract);
+    setLoading(false);
+  };
+
   return (
     <BrowserRouter>
       <div className="App">
-        <>
-          <Navbar expand="lg" bg="secondary" variant="dark">
-            <Container>
-              <Navbar.Brand href="http://www.dappuniversity.com/bootcamp">
-                <img src={logo} width="40" height="40" className="" alt="" />
-                &nbsp; Debook
-              </Navbar.Brand>
-              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="me-auto">
-                  <Nav.Link as={Link} to="/">Home</Nav.Link>
-                  <Nav.Link as={Link} to="/profile">Profile</Nav.Link>
-                </Nav>
-                <Nav>
-                  {account ? (
-                    <Nav.Link
-                      href={`https://etherscan.io/address/${account}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="button nav-button btn-sm mx-4">
-                      <Button variant="outline-light">
-                        {account.slice(0, 5) + '...' + account.slice(38, 42)}
-                      </Button>
-
-                    </Nav.Link>
-                  ) : (
-                    <Button onClick={web3Handler} variant="outline-light">Connect Wallet</Button>
-                  )}
-                </Nav>
-              </Navbar.Collapse>
-            </Container>
-          </Navbar>
-        </>
-        <div>
+        <div className="Ellipse2"></div>
+        <div className="Ellipse1"></div>
+        <div className="Ellipse3"></div>
+        <Navbar account={account} web3Handler={web3Handler} />
+        {!account && <BrandInfo />}
+        <div className="loada">
           {loading ? (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
-              <Spinner animation="border" style={{ display: 'flex' }} />
-              <p className='mx-3 my-0'>Awaiting Metamask Connection...</p>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                minHeight: '80vh',
+              }}
+              className="bg"
+            >
+              <Spinner className="spin" animation="border" style={{ display: 'flex' }} />
+              <p className="loadb">Awaiting Metamask Connection...</p>
             </div>
           ) : (
             <Routes>
-              <Route path="/" element={
-                <Home contract={contract} />
-              } />
-              <Route path="/profile" element={
-                <Profile contract={contract} />
-              } />
+              <Route path="/" element={<Home contract={contract} />} />
+              <Route path="/profile" element={<Profile contract={contract} />} />
             </Routes>
           )}
         </div>
       </div>
     </BrowserRouter>
-
   );
 }
 

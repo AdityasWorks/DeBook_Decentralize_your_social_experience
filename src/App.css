@@ -1,0 +1,82 @@
+.App {
+  background-color: #090041;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.body{
+  background-color: #090041;
+}
+.Ellipse2 {
+  position: fixed;
+  top: 500px;
+  left: 1500px;
+  width: 500px;
+  height: 500px;
+  background-image: url('./Ellipse2.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+.Ellipse1 {
+  position: fixed;
+  top: 250px;
+  left: 0%;
+  width: 700px;
+  height: 700px;
+  background-image: url('./Ellipse\ 1.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.Ellipse3 {
+  position: fixed;
+  top: 0%;
+  right: 200px;
+  width: 700px;
+  height: 700px;
+  background-image: url('./Ellipse\ 3.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.logo{
+  mix-blend-mode: color-burn;
+}
+
+.navbar {
+background: transparent;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(50px);
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.nav-link {
+  color: #fff !important;
+}
+
+.loada {
+  position: fixed;
+  bottom: 0;
+  left: 450px;
+  top: 00px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.spin {
+  margin-right: 1rem;
+  margin-bottom: 1.05rem;
+  color: #fff;
+}
+
+.loada .loadb {
+  color: white;
+}

@@ -3,7 +3,17 @@ import { ethers } from "ethers"
 import { Row, Form, Button, Card, ListGroup } from 'react-bootstrap'
 import { create as ipfsHttpClient } from 'ipfs-http-client'
 import axios from "axios";
-const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
+import "./Home.css";
+
+const client = axios({
+    host: 'gateway.pinata.cloud',
+    port: '443',
+    protocol: 'https',
+    headers: {
+      pinata_api_key: 'ed0f881fcd1c79e0207f', 
+      pinata_secret_api_key: '7619b78d960a1b1a39f550d23cabbc742d0ae2a4adb7267a6436f23a928d7827'
+    }
+  });
 
 
 
@@ -25,17 +35,12 @@ const Home = ({ contract }) => {
         let results = await contract.getAllPosts()
         // Fetch metadata of each post and add that to post object.
         let posts = await Promise.all(results.map(async i => {
-            // use hash to fetch the post's metadata stored on ipfs 
             let response = await fetch(`https://gateway.pinata.cloud/ipfs/${i.hash}`)
             const metadataPost = await response.json()
-            // get authors nft profile
             const nftId = await contract.profiles(i.author)
-            // get uri url of nft profile
             const uri = await contract.tokenURI(nftId)
-            // fetch nft profile metadata
             response = await fetch(uri)
             const metadataProfile = await response.json()
-            // define author object
             const author = {
                 address: i.author,
                 username: metadataProfile.username,
@@ -63,7 +68,6 @@ const Home = ({ contract }) => {
     const uploadPost = async () => {
         if (!post) return
         let hash
-        // Upload post to IPFS
         try {
             const result = await client.add(JSON.stringify({ post }))
             setLoading(true)
@@ -81,7 +85,7 @@ const Home = ({ contract }) => {
         loadPosts()
     }
     if (loading) return (
-        <div className='text-center'>
+        <div className='loadf'>
             <main style={{ padding: "1rem 0" }}>
                 <h2>Loading...</h2>
             </main>
@@ -89,14 +93,14 @@ const Home = ({ contract }) => {
     )
     return (
         <div className="container-fluid mt-5">
-            {hasProfile ?
+            
                 (<div className="row">
-                    <main role="main" className="col-lg-12 mx-auto" style={{ maxWidth: '1000px' }}>
+                    <main role="main" className="boxxx" style={{ maxWidth: '1000px' }}>
                         <div className="content mx-auto">
                             <Row className="g-4">
                                 <Form.Control onChange={(e) => setPost(e.target.value)} size="lg" required as="textarea" />
                                 <div className="d-grid px-0">
-                                    <Button onClick={uploadPost} variant="primary" size="lg">
+                                    <Button onClick={uploadPost} variant="primary" size="lg" >
                                         Post!
                                     </Button>
                                 </div>
@@ -105,12 +109,7 @@ const Home = ({ contract }) => {
                     </main>
                 </div>)
                 :
-                (<div className="text-center">
-                    <main style={{ padding: "1rem 0" }}>
-                        <h2>Must own an NFT to post</h2>
-                    </main>
-                </div>)
-            }
+            
 
             <p>&nbsp;</p>
             <hr />
@@ -152,7 +151,7 @@ const Home = ({ contract }) => {
                         </div>)
                 })
                 : (
-                    <div className="text-center">
+                    <div className="Nopost">
                         <main style={{ padding: "1rem 0" }}>
                             <h2>No posts yet</h2>
                         </main>

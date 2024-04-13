@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react'
-import { ethers } from "ethers"
-import { Row, Form, Button, Card, ListGroup, Col } from 'react-bootstrap'
+import { Row, Form, Button, Card, Col } from 'react-bootstrap'
 import { create as ipfsHttpClient } from 'ipfs-http-client'
 import axios from "axios";
+import "./Profile.css";
+
+const FormData = require('form-data')
+
 const client = ipfsHttpClient({
-    host: 'ipfs-api.pinata.cloud',
+    host: 'gateway.pinata.cloud',
     port: '443',
     protocol: 'https',
     headers: {
-      pinata_api_key: 'ed0f881fcd1c79e0207f', // Replace with your Pinata API Key
-      pinata_secret_api_key: '7619b78d960a1b1a39f550d23cabbc742d0ae2a4adb7267a6436f23a928d7827' // Replace with your Pinata Secret API Key
+      pinata_api_key: 'ed0f881fcd1c79e0207f', 
+      pinata_secret_api_key: '7619b78d960a1b1a39f550d23cabbc742d0ae2a4adb7267a6436f23a928d7827',
+      Authorization: `Bearer ${process.env.PINATA_JWT}`
     }
   });
-
 
 const App = ({ contract }) => {
     const [profile, setProfile] = useState('')
@@ -20,25 +23,31 @@ const App = ({ contract }) => {
     const [avatar, setAvatar] = useState(null)
     const [username, setUsername] = useState('')
     const [loading, setLoading] = useState(true)
+
+
     const loadMyNFTs = async () => {
-        // Get users nft ids
-        const results = await contract.getMyNfts();
-        // Fetch metadata of each nft and add that to nft object.
-        let nfts = await Promise.all(results.map(async i => {
-            // get uri url of nft
-            const uri = await contract.tokenURI(i)
-            // fetch nft metadata
-            const response = await fetch(uri)
-            const metadata = await response.json()
-            return ({
-                id: i,
-                username: metadata.username,
-                avatar: metadata.avatar
-            })
-        }))
-        setNfts(nfts)
-        getProfile(nfts)
-    }
+        try {
+            const results = await contract.getMyNfts();
+            
+            const nftData = await Promise.all(results.map(async id => {
+                const tokenURI = await contract.tokenURI(id);
+                const response = await fetch(tokenURI);
+                const metadata = await response.json();
+                return {
+                    id,
+                    username: metadata.username,
+                    avatar: metadata.avatar
+                };
+            }));
+    
+            setNfts(nftData);
+    
+            getProfile(nftData);
+        } catch (error) {
+            console.error('Error loading NFTs:', error);
+        }
+    };
+    
     const getProfile = async (nfts) => {
         const address = await contract.signer.getAddress()
         const id = await contract.profiles(address)
@@ -46,6 +55,7 @@ const App = ({ contract }) => {
         setProfile(profile)
         setLoading(false)
     }
+    
     const uploadToIPFS = async (event) => {
         event.preventDefault();
         const file = event.target.files[0];
@@ -59,28 +69,34 @@ const App = ({ contract }) => {
                     url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
                     data: formData,
                     headers: {
-                        pinata_api_key: 'ed0f881fcd1c79e0207f', // Replace with your Pinata API Key
-                        pinata_secret_api_key: '7619b78d960a1b1a39f550d23cabbc742d0ae2a4adb7267a6436f23a928d7827', // Replace with your Pinata Secret API Key
+                        pinata_api_key: 'ed0f881fcd1c79e0207f', 
+                        pinata_secret_api_key: '7619b78d960a1b1a39f550d23cabbc742d0ae2a4adb7267a6436f23a928d7827',
+                        PINATA_JWT: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIxMGU2ZTdiMC0yYzA2LTQ3ZDUtODRjMC0yYTczNDQyMGJhM2UiLCJlbWFpbCI6ImhleWFhZGkyQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaW5fcG9saWN5Ijp7InJlZ2lvbnMiOlt7ImlkIjoiRlJBMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfSx7ImlkIjoiTllDMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfV0sInZlcnNpb24iOjF9LCJtZmFfZW5hYmxlZCI6ZmFsc2UsInN0YXR1cyI6IkFDVElWRSJ9LCJhdXRoZW50aWNhdGlvblR5cGUiOiJzY29wZWRLZXkiLCJzY29wZWRLZXlLZXkiOiJlZDBmODgxZmNkMWM3OWUwMjA3ZiIsInNjb3BlZEtleVNlY3JldCI6Ijc2MTliNzhkOTYwYTFiMWEzOWY1NTBkMjNjYWJiYzc0MmQwYWUyYTRhZGI3MjY3YTY0MzZmMjNhOTI4ZDc4MjciLCJpYXQiOjE3MTI2MzcyNzl9.j9SFvwWptG8lRpx1EkDXxBe1Vc3kSrS4sYC7ciegqYQ',
                         "Content-Type": "multipart/form-data"
                     },
                 });
                 setAvatar(`https://gateway.pinata.cloud/ipfs/${response.data.IpfsHash}`);
+
             } catch (error) {
                 console.log("Pinata image upload error: ", error);
             }
         }
     };
-    const mintProfile = async (event) => {
-        if (!avatar || !username) return
+    const mintProfile = async () => {
+        if (!avatar || !username) return;
         try {
-            const result = await client.add(JSON.stringify({ avatar, username }))
-            setLoading(true)
-            await (await contract.mint(`https://gateway.pinata.cloud/ipfs/${result.path}`)).wait()
-            loadMyNFTs()
+            setLoading(true);
+            const response = await client.add(JSON.stringify({avatar,username}));
+            const ipfsUri = `https://rose-changing-dormouse-552.mypinata.cloud/ipfs/${response.path}`;
+            await (await contract.mint(ipfsUri)).wait()
+            await loadMyNFTs();
+            setLoading(false);
         } catch (error) {
-            window.alert("ipfs uri upload error: ", error)
+            console.error('Error minting profile NFT:', error);
+            setLoading(false);
         }
-    }
+    };
+    
     const switchProfile = async (nft) => {
         setLoading(true)
         await (await contract.setProfile(nft.id)).wait()
@@ -113,11 +129,11 @@ const App = ({ contract }) => {
                                 type="file"
                                 required
                                 name="file"
-                                onChange={uploadToIPFS}
+                            
                             />
                             <Form.Control onChange={(e) => setUsername(e.target.value)} size="lg" required type="text" placeholder="Username" />
                             <div className="d-grid px-0">
-                                <Button onClick={mintProfile} variant="primary" size="lg">
+                                <Button classname="mintbutton" onClick={mintProfile} variant="primary" size="lg" color='purple'>
                                     Mint NFT Profile
                                 </Button>
                             </div>

@@ -69,9 +69,16 @@ const Home = ({ contract }) => {
         if (!post) return
         let hash
         try {
-            const result = await client.add(JSON.stringify({ post }))
+            
+            const res = await axios.post('https://api.pinata.cloud/pinning/pinJSONToIPFS',JSON.stringify({post}), {
+            headers: {
+                'Content-Type': 'application/json',
+                pinata_api_key: 'ed0f881fcd1c79e0207f', 
+                pinata_secret_api_key: '7619b78d960a1b1a39f550d23cabbc742d0ae2a4adb7267a6436f23a928d7827'
+            }
+            })
             setLoading(true)
-            hash = result.path
+            hash = (res.data.IpfsHash)
         } catch (error) {
             window.alert("ipfs image upload error: ", error)
         }
@@ -92,15 +99,15 @@ const Home = ({ contract }) => {
         </div>
     )
     return (
-        <div className="container-fluid mt-5">
-            
+        <div className="bigdiv">
+            {hasProfile ?
                 (<div className="row">
-                    <main role="main" className="boxxx" style={{ maxWidth: '1000px' }}>
-                        <div className="content mx-auto">
+                    <main role="main" className="col-lg-12 mx-auto" style={{ maxWidth: '1000px' }}>
+                        <div className="content mx-auto ">
                             <Row className="g-4">
-                                <Form.Control onChange={(e) => setPost(e.target.value)} size="lg" required as="textarea" />
+                                <Form.Control className='hell' onChange={(e) => setPost(e.target.value)} size="lg" required as="textarea" />
                                 <div className="d-grid px-0">
-                                    <Button onClick={uploadPost} variant="primary" size="lg" >
+                                    <Button className='postbut' onClick={uploadPost} variant="danger" size="lg">
                                         Post!
                                     </Button>
                                 </div>
@@ -109,16 +116,21 @@ const Home = ({ contract }) => {
                     </main>
                 </div>)
                 :
-            
+                (<div className="mustown">
+                    <main style={{ padding: "1rem 0" }}>
+                        <h2>Must own an NFT to post</h2>
+                    </main>
+                </div>)
+            }
 
             <p>&nbsp;</p>
             <hr />
-            <p className="my-auto">&nbsp;</p>
+            <p className="posts">&nbsp;</p>
             {posts.length > 0 ?
                 posts.map((post, key) => {
                     return (
-                        <div key={key} className="col-lg-12 my-3 mx-auto" style={{ width: '1000px' }}>
-                            <Card border="primary">
+                        <div key={key} className="posting" style={{ width: '1000px' }}>
+                            <Card border="primary" className='cardd' bg='transparent'>
                                 <Card.Header>
                                     <img
                                         className='mr-2'
@@ -138,7 +150,7 @@ const Home = ({ contract }) => {
                                         {post.content}
                                     </Card.Title>
                                 </Card.Body>
-                                <Card.Footer className="list-group-item">
+                                <Card.Footer className="cardfoot">
                                     <div className="d-inline mt-auto float-start">Tip Amount: {ethers.utils.formatEther(post.tipAmount)} ETH</div>
                                     {address === post.author.address || !hasProfile ?
                                         null : <div className="d-inline float-end">

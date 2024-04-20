@@ -1,8 +1,10 @@
 import React from 'react';
 import './BrandInfo.css';
 
+
 const BrandInfo = () => {
   return (
+    
     <div className="brand-info-container">
       <div className="brand-info-box">
         <h3 className='welcome'>WELCOME TO</h3>
@@ -12,6 +14,7 @@ const BrandInfo = () => {
         </p>
       </div>
     </div>
+    
   );
 };
 

@@ -3,20 +3,22 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .body{
   background-color: #090041;
 }
 .Ellipse2 {
   position: fixed;
-  top: 500px;
-  left: 1500px;
-  width: 500px;
-  height: 500px;
+  top: 400px;
+  left: 1420px;
+  width: 600px;
+  height: 600px;
   background-image: url('./Ellipse2.png');
   background-size: contain;
   background-repeat: no-repeat;
-  z-index: 1;
+  z-index: 0;
+  
 }
 .Ellipse1 {
   position: fixed;
@@ -27,13 +29,14 @@
   background-image: url('./Ellipse\ 1.png');
   background-size: contain;
   background-repeat: no-repeat;
-  z-index: 1;
+  z-index: 0;
+
 }
 
 .Ellipse3 {
   position: fixed;
   top: 0%;
-  right: 200px;
+  right: 300px;
   width: 700px;
   height: 700px;
   background-image: url('./Ellipse\ 3.png');
@@ -51,6 +54,7 @@ background: transparent;
 box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(50px);
 font-family: Verdana, Geneva, Tahoma, sans-serif;
+z-index: 1;
 }
 
 .nav-link {
@@ -58,17 +62,7 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .loada {
-  position: fixed;
-  bottom: 0;
-  left: 450px;
-  top: 00px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 0;
   z-index: 1;
-  pointer-events: none;
 }
 
 .spin {
@@ -79,4 +73,26 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 
 .loada .loadb {
   color: white;
+}
+
+.bg{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 400px;
+  margin-left: 800px;
+}
+.circle {
+  position: fixed;
+  border: 2px solid wheat;
+  border-radius: 50%;
+  box-shadow: 0 0 10px wheat;
+  pointer-events: none;
+  position: fixed;
+  top: -10rem;
+  left: -10rem;
+  height: 2rem;
+  width: 2rem;
+  transition: transform 50ms, background 50ms;
+  z-index: 10;
 }

@@ -42,8 +42,23 @@ function App() {
     setLoading(false);
   };
 
+  const circle = document.getElementById('circle');
+
+  document.addEventListener('mousemove', (e) => {
+      const height = circle.offsetHeight;
+      const width = circle.offsetWidth;
+  
+      setTimeout(() => { 
+          circle.style.left = `${e.pageX - width/2}px`;
+          circle.style.top = `${e.pageY - height/2}px`;
+      }, 50);
+  });
+
   return (
+    
     <BrowserRouter>
+    
+      <div id="circle" className="circle"></div>
       <div className="App">
         <div className="Ellipse2"></div>
         <div className="Ellipse1"></div>
@@ -52,16 +67,8 @@ function App() {
         {!account && <BrandInfo />}
         <div className="loada">
           {loading ? (
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                minHeight: '80vh',
-              }}
-              className="bg"
-            >
-              <Spinner className="spin" animation="border" style={{ display: 'flex' }} />
+            <div className="bg">
+              <Spinner className="spin" animation="border" />
               <p className="loadb">Awaiting Metamask Connection...</p>
             </div>
           ) : (

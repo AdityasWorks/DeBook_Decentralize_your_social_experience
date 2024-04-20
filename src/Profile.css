@@ -1,7 +1,44 @@
-.mintbutton{
-  color: beige;
+.Loadd{
+  color: white;
 }
 
-.mb4{
-  color: aqua;
+.username{
+  color: white;
+  padding: 25px;
 }
+
+.nonft{
+  color: white;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+.row{
+  display: flex;
+  justify-content: center;
+}
+
+.usernameform{
+  color: white !important;
+  background-image: url('./Rectangle\ 1.png');
+  background-size: 1200px;
+  background-position: center;
+  border: transparent !important;
+}
+
+.setpruser{
+  color: white;
+}
+
+.boxxxx{
+  font-size: 30px;
+}
+
+.img{
+  color: white !important;
+  background-image: url('./Rectangle\ 1.png') ;
+  background-size: 1200px;
+  background-position: center;
+  border: transparent !important;
+}
+

@@ -1,35 +1,28 @@
-.kkl{
-  margin-left: -1;
-}
-
 .navbar {
   background-color: transparent !important;
   width: 100%;
 }
 
-.brand-container {
-  display: flex;
-  align-items: center;
-  margin-right: auto;
-  font-family: poppins;
-  font-weight: bold;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-}
-
-.logo {
-  margin-right: 0.6rem;
-}
-
-.nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.navbar-collapse {
+  justify-content: flex-end;
 }
 
 .nav-link {
   color: #fff !important;
+}
+
+.brand-container {
+  display: flex;
+  align-items: center;
+  font-family: 'Poppins', sans-serif; /* Use correct font family name */
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+.logo{
+  transform: translate(-7px,0);
+}
+
+.connectwal{
+  margin-right: 15px;
 }

@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { Row, Form, Button, Card, Col } from 'react-bootstrap'
-import { create as ipfsHttpClient } from 'ipfs-http-client'
+import { create as ipfsHttpClient } from 'ipfs-http-client' 
 import axios from "axios";
 import "./Profile.css";
+
 
 const FormData = require('form-data')
 
@@ -82,19 +83,44 @@ const App = ({ contract }) => {
             }
         }
     };
+
+    
+
     const mintProfile = async () => {
         if (!avatar || !username) return;
-        try {
+
+       try {
             setLoading(true);
-            const response = await client.add(JSON.stringify({avatar,username}));
-            const ipfsUri = `https://rose-changing-dormouse-552.mypinata.cloud/ipfs/${response.path}`;
+            const res = await axios.post('https://api.pinata.cloud/pinning/pinJSONToIPFS',JSON.stringify({avatar,username}), {
+            headers: {
+                'Content-Type': 'application/json',
+                pinata_api_key: 'ed0f881fcd1c79e0207f', 
+                pinata_secret_api_key: '7619b78d960a1b1a39f550d23cabbc742d0ae2a4adb7267a6436f23a928d7827'
+            }
+            })
+            const ipfsUri = `https://gateway.pinata.cloud/ipfs/${res.data.IpfsHash}`;
             await (await contract.mint(ipfsUri)).wait()
             await loadMyNFTs();
             setLoading(false);
+            console.log(ipfsUri);
+            console.log(res.data.IpfsHash);
         } catch (error) {
             console.error('Error minting profile NFT:', error);
             setLoading(false);
         }
+        // try {
+        //     setLoading(true);
+        //     const response = await client.add(JSON.stringify({avatar,username}));
+        //     const ipfsUri = `https://gateway.pinata.cloud/ipfs/${response.path}`;
+        //     await (await contract.mint(ipfsUri)).wait()
+        //     await loadMyNFTs();
+        //     setLoading(false);
+        //     console.log(ipfsUri);
+        //     console.log(response.path);
+        // } catch (error) {
+        //     console.error('Error minting profile NFT:', error);
+        //     setLoading(false);
+        // }
     };
     
     const switchProfile = async (nft) => {
@@ -108,32 +134,35 @@ const App = ({ contract }) => {
         }
     })
     if (loading) return (
-        <div className='text-center'>
+        <div className='Loadd'>
             <main style={{ padding: "1rem 0" }}>
                 <h2>Loading...</h2>
             </main>
         </div>
     )
+
+
     return (
         <div className="mt-4 text-center">
-            {profile ? (<div className="mb-3"><h3 className="mb-3">{profile.username}</h3>
-                <img className="mb-3" style={{ width: '400px' }} src={profile.avatar} /></div>)
+            {profile ? (<div className="username"><h3 className="boxxxx">{profile.username}</h3>
+                <img className="avatarbox" style={{ width: '250px' }} src={profile.avatar} /></div>)
                 :
-                <h4 className="mb-4">No NFT profile, please create one...</h4>}
+                <h4 className="nonft">No NFT profile, please create one...</h4>}
 
             <div className="row">
-                <main role="main" className="col-lg-12 mx-auto" style={{ maxWidth: '1000px' }}>
-                    <div className="content mx-auto">
+                <main role="main" className="pro" style={{ maxWidth: '1000px' }}>
+                    <div className="profileuploadbox">
                         <Row className="g-4">
                             <Form.Control
+                                className='img'
                                 type="file"
                                 required
                                 name="file"
-                            
+                                onChange={uploadToIPFS}
                             />
-                            <Form.Control onChange={(e) => setUsername(e.target.value)} size="lg" required type="text" placeholder="Username" />
-                            <div className="d-grid px-0">
-                                <Button classname="mintbutton" onClick={mintProfile} variant="primary" size="lg" color='purple'>
+                            <Form.Control className="usernameform" onChange={(e) => setUsername(e.target.value)} size="lg" required type="text" placeholder="Username" />
+                            <div className="usernametext">
+                                <Button classname="mintbutton" onClick={mintProfile} variant="danger" size="lg" >
                                     Mint NFT Profile
                                 </Button>
                             </div>
@@ -147,14 +176,14 @@ const App = ({ contract }) => {
                         if (nft.id === profile.id) return
                         return (
                             <Col key={idx} className="overflow-hidden">
-                                <Card>
-                                    <Card.Img variant="top" src={nft.avatar} />
-                                    <Card.Body color="secondary">
-                                        <Card.Title>{nft.username}</Card.Title>
+                                <Card border="primary" bg="transparent" >
+                                    <Card.Img variant="Danger" src={nft.avatar} className="setav"/>
+                                    <Card.Body color="Danger">
+                                        <Card.Title className="setpruser">{nft.username}</Card.Title>
                                     </Card.Body>
                                     <Card.Footer>
                                         <div className='d-grid'>
-                                            <Button onClick={() => switchProfile(nft)} variant="primary" size="lg">
+                                            <Button onClick={() => switchProfile(nft)} variant="danger" size="lg">
                                                 Set as Profile
                                             </Button>
                                         </div>

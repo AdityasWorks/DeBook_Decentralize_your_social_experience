@@ -2,7 +2,10 @@
   font-size: 44px;
   font-family: Urbanist;
   color: white;
-  left-margin: 100px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .loadf{
@@ -11,4 +14,40 @@
 
 .boxxx{
   align-items: center;
+}
+
+.mustown{
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding-top: 75px;
+}
+
+.cardd{
+  margin: 10px;
+  color: whitesmoke ;
+  background-image: url('./Rectangle\ 1.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.hell{
+  background-image: url('./Rectangle\ 1.png');
+  background-size: cover;
+  background-position: center;
+  border: 2px solid royalblue !important;
+  color: wheat !important;
+}
+
+.bigdiv{
+  padding-top: 30px;
+}
+
+.postbut{
+  background-color: crimson !important;
+  border: transparent !important;
+}
+
+.px-0{
+  color: antiquewhite !important;
 }

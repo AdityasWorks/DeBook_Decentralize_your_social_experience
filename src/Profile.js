@@ -12,8 +12,8 @@ const client = ipfsHttpClient({
     port: '443',
     protocol: 'https',
     headers: {
-      pinata_api_key: 'ed0f881fcd1c79e0207f', 
-      pinata_secret_api_key: '7619b78d960a1b1a39f550d23cabbc742d0ae2a4adb7267a6436f23a928d7827',
+      pinata_api_key: process.env.PINATA_API, 
+      pinata_secret_api_key: process.env.PINATA_SECRET,
       Authorization: `Bearer ${process.env.PINATA_JWT}`
     }
   });
@@ -70,9 +70,9 @@ const App = ({ contract }) => {
                     url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
                     data: formData,
                     headers: {
-                        pinata_api_key: 'ed0f881fcd1c79e0207f', 
-                        pinata_secret_api_key: '7619b78d960a1b1a39f550d23cabbc742d0ae2a4adb7267a6436f23a928d7827',
-                        PINATA_JWT: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIxMGU2ZTdiMC0yYzA2LTQ3ZDUtODRjMC0yYTczNDQyMGJhM2UiLCJlbWFpbCI6ImhleWFhZGkyQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaW5fcG9saWN5Ijp7InJlZ2lvbnMiOlt7ImlkIjoiRlJBMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfSx7ImlkIjoiTllDMSIsImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxfV0sInZlcnNpb24iOjF9LCJtZmFfZW5hYmxlZCI6ZmFsc2UsInN0YXR1cyI6IkFDVElWRSJ9LCJhdXRoZW50aWNhdGlvblR5cGUiOiJzY29wZWRLZXkiLCJzY29wZWRLZXlLZXkiOiJlZDBmODgxZmNkMWM3OWUwMjA3ZiIsInNjb3BlZEtleVNlY3JldCI6Ijc2MTliNzhkOTYwYTFiMWEzOWY1NTBkMjNjYWJiYzc0MmQwYWUyYTRhZGI3MjY3YTY0MzZmMjNhOTI4ZDc4MjciLCJpYXQiOjE3MTI2MzcyNzl9.j9SFvwWptG8lRpx1EkDXxBe1Vc3kSrS4sYC7ciegqYQ',
+                        pinata_api_key: process.env.PINATA_API, 
+                        pinata_secret_api_key: process.env.PINATA_SECRET,
+                        PINATA_JWT: process.env.PINATA_JWT,
                         "Content-Type": "multipart/form-data"
                     },
                 });
@@ -94,8 +94,8 @@ const App = ({ contract }) => {
             const res = await axios.post('https://api.pinata.cloud/pinning/pinJSONToIPFS',JSON.stringify({avatar,username}), {
             headers: {
                 'Content-Type': 'application/json',
-                pinata_api_key: 'ed0f881fcd1c79e0207f', 
-                pinata_secret_api_key: '7619b78d960a1b1a39f550d23cabbc742d0ae2a4adb7267a6436f23a928d7827'
+                pinata_api_key: process.env.PINATA_API, 
+                pinata_secret_api_key: process.env.PINATA_SECRET
             }
             })
             const ipfsUri = `https://gateway.pinata.cloud/ipfs/${res.data.IpfsHash}`;

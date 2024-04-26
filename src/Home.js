@@ -5,13 +5,14 @@ import { create as ipfsHttpClient } from 'ipfs-http-client'
 import axios from "axios";
 import "./Home.css";
 
-const client = axios({
+const client = ipfsHttpClient({
     host: 'gateway.pinata.cloud',
     port: '443',
     protocol: 'https',
     headers: {
-      pinata_api_key: 'ed0f881fcd1c79e0207f', 
-      pinata_secret_api_key: '7619b78d960a1b1a39f550d23cabbc742d0ae2a4adb7267a6436f23a928d7827'
+      pinata_api_key: process.env.PINATA_API, 
+      pinata_secret_api_key: process.env.PINATA_SECRET,
+      Authorization: `Bearer ${process.env.PINATA_JWT}`
     }
   });
 
@@ -73,8 +74,8 @@ const Home = ({ contract }) => {
             const res = await axios.post('https://api.pinata.cloud/pinning/pinJSONToIPFS',JSON.stringify({post}), {
             headers: {
                 'Content-Type': 'application/json',
-                pinata_api_key: 'ed0f881fcd1c79e0207f', 
-                pinata_secret_api_key: '7619b78d960a1b1a39f550d23cabbc742d0ae2a4adb7267a6436f23a928d7827'
+                pinata_api_key: process.env.PINATA_API, 
+                pinata_secret_api_key: process.env.PINATA_SECRET
             }
             })
             setLoading(true)

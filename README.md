@@ -1,48 +1,66 @@
-# debook
+# DeBook
+
+DeBook is a decentralized book lending platform built on Solidity, JavaScript, and Ethers, utilizing technologies such as Hardhat for development and IPFS for metadata storage. It offers a seamless experience for users to borrow and lend books securely on the blockchain.
 
 ## Technology Stack & Tools
 
-- Solidity (Writing Smart Contract)
-- Javascript (React & Testing)
-- [Ethers](https://docs.ethers.io/v5/) (Blockchain Interaction)
-- [Hardhat](https://hardhat.org/) (Development Framework)
-- [Ipfs](https://ipfs.io/) (Metadata storage)
-- [React routers](https://v5.reactrouter.com/) (Navigational components)
+- **Solidity**: Writing smart contracts to manage book lending transactions.
+- **JavaScript (React & Testing)**: Frontend development and testing.
+- **Ethers**: Interacting with the blockchain for book transactions.
+- **Hardhat**: Development framework for Ethereum smart contracts.
+- **IPFS**: Storing metadata of books in a decentralized manner.
+- **React Routers**: Navigational components for the frontend.
 
 ## Requirements For Initial Setup
-- Install [NodeJS](https://nodejs.org/en/), should work with any node version below 16.5.0
-- Install [Hardhat](https://hardhat.org/)
+
+- Install Node.js (Compatible with any version below 16.5.0).
+- Install Hardhat.
 
 ## Setting Up
-### 1. Clone/Download the Repository
 
-### 2. Install Dependencies:
-```
-$ cd debook
-$ npm install
-```
-### 3. Boot up local development blockchain
-```
-$ cd debook
-$ npx hardhat node
+### 1. **Clone/Download the Repository**.
+
+### 2. **Install Dependencies**:
+```bash
+cd debook
+npm install
 ```
 
-### 4. Connect development blockchain accounts to Metamask
-- Copy private key of the addresses and import to Metamask
-- Connect your metamask to hardhat blockchain, network 127.0.0.1:8545.
-- If you have not added hardhat to the list of networks on your metamask, open up a browser, click the fox icon, then click the top center dropdown button that lists all the available networks then click add networks. A form should pop up. For the "Network Name" field enter "Hardhat". For the "New RPC URL" field enter "http://127.0.0.1:8545". For the chain ID enter "31337". Then click save.  
+### 3. **Change Credentials in .env File**
+- Rename the '.env.exaple' file to just '.env'
+- Paste your credentials in the inverted commas('')
 
+### 4. **Boot up Local Development Blockchain:**
+```bash
+cd debook
+npx hardhat node
+```
+### 5. **Connect Development Blockchain Accounts to Metamask:**
 
-### 5. Run deploy script to migrate smart contracts
-`$ npx hardhat run scripts/deploy.js --network localhost`
-
-### 6. Run Tests
-`$ npx hardhat test`
-
-### 7. Launch Frontend
-`$ npm run start`
-
-License
-----
-MIT
-
+- Copy private keys of the addresses and import them to Metamask.
+- Connect Metamask to Hardhat blockchain with network 127.0.0.1:8545.
+- If Hardhat is not listed in Metamask networks:
+- Open Metamask in your browser.
+- Click the fox icon.
+- Click the top center dropdown button listing all available networks.
+- Click "Add Network" and fill in the following details:
+- Network Name: Hardhat
+- New RPC URL: http://127.0.0.1:8545
+- Chain ID: 31337
+- Click "Save".
+### 6. **Run Deploy Script to Migrate Smart Contracts:**
+```bash
+npx hardhat run scripts/deploy.js --network localhost
+```
+### or
+```bash
+npx hardhat run scripts/deploy.js --network sepolia
+```
+### 7. **Run Tests:**
+```bash
+npx hardhat test
+```
+### 8. **Launch Frontend:**
+```bash
+npm run start
+```

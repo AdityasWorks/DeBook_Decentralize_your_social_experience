@@ -11,8 +11,7 @@ const client = ipfsHttpClient({
     protocol: 'https',
     headers: {
       pinata_api_key: process.env.PINATA_API, 
-      pinata_secret_api_key: process.env.PINATA_SECRET,
-      Authorization: `Bearer ${process.env.PINATA_JWT}`
+      pinata_secret_api_key: process.env.PINATA_SECRET
     }
   });
 

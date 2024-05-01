@@ -72,7 +72,6 @@ const App = ({ contract }) => {
                     headers: {
                         pinata_api_key: process.env.PINATA_API, 
                         pinata_secret_api_key: process.env.PINATA_SECRET,
-                        PINATA_JWT: process.env.PINATA_JWT,
                         "Content-Type": "multipart/form-data"
                     },
                 });

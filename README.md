@@ -19,17 +19,23 @@ DeBook is a decentralized book lending platform built on Solidity, JavaScript, a
 ## Setting Up
 
 ### 1. **Clone/Download the Repository**.
+
 ### 2. **Install Dependencies**:
 ```bash
 cd debook
 npm install
 ```
-### 3. **Boot up Local Development Blockchain:**
+
+### 3. **Change Credentials in .env File**
+- Rename the '.env.exaple' file to just '.env'
+- Paste your credentials in the inverted commas('')
+
+### 4. **Boot up Local Development Blockchain:**
 ```bash
 cd debook
 npx hardhat node
 ```
-### 4. **Connect Development Blockchain Accounts to Metamask:**
+### 5. **Connect Development Blockchain Accounts to Metamask:**
 
 - Copy private keys of the addresses and import them to Metamask.
 - Connect Metamask to Hardhat blockchain with network 127.0.0.1:8545.
@@ -42,15 +48,19 @@ npx hardhat node
 - New RPC URL: http://127.0.0.1:8545
 - Chain ID: 31337
 - Click "Save".
-### 5. **Run Deploy Script to Migrate Smart Contracts:**
+### 6. **Run Deploy Script to Migrate Smart Contracts:**
 ```bash
 npx hardhat run scripts/deploy.js --network localhost
 ```
-### 6. **Run Tests:**
+### or
+```bash
+npx hardhat run scripts/deploy.js --network sepolia
+```
+### 7. **Run Tests:**
 ```bash
 npx hardhat test
 ```
-### 7. **Launch Frontend:**
+### 8. **Launch Frontend:**
 ```bash
 npm run start
 ```

@@ -1,6 +1,6 @@
 # DeBook
 
-DeBook is a decentralized book lending platform built on Solidity, JavaScript, and Ethers, utilizing technologies such as Hardhat for development and IPFS for metadata storage. It offers a seamless experience for users to borrow and lend books securely on the blockchain.
+DeBook is a decentralized social media platform built on Solidity, JavaScript, utilizing technologies such as Hardhat for development and IPFS for metadata storage. It offers a seamless experience for users to post threads and mint nfts as profiles securely on the blockchain.
 
 ## Technology Stack & Tools
 
@@ -13,8 +13,7 @@ DeBook is a decentralized book lending platform built on Solidity, JavaScript, a
 
 ## Requirements For Initial Setup
 
-- Install Node.js (Compatible with any version below 16.5.0).
-- Install Hardhat.
+- Install Node.js.
 
 ## Setting Up
 
